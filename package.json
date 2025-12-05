@@ -1,19 +1,9 @@
 {
   "name": "@schplitt/eslint-config",
-  "type": "module",
   "version": "0.0.0",
+  "type": "module",
   "packageManager": "pnpm@10.15.1",
   "description": "Opinionated ESLint config for TypeScript, Vue, Angular, and more",
-  "author": "schplitt",
-  "license": "MIT",
-  "homepage": "https://github.com/schplitt/eslint-config#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/schplitt/eslint-config.git"
-  },
-  "bugs": {
-    "url": "https://github.com/schplitt/eslint-config/issues"
-  },
   "keywords": [
     "eslint",
     "eslint-config",
@@ -25,6 +15,16 @@
     "linter",
     "code-style"
   ],
+  "license": "MIT",
+  "author": "schplitt",
+  "homepage": "https://github.com/schplitt/eslint-config#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schplitt/eslint-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/schplitt/eslint-config/issues"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -43,9 +43,6 @@
     "README.md",
     "dist"
   ],
-  "engines": {
-    "node": ">=20.0.0"
-  },
   "scripts": {
     "build": "tsdown",
     "lint": "eslint",
@@ -53,14 +50,20 @@
     "typecheck": "tsc --noEmit",
     "release": "bumpp && pnpm publish --access public"
   },
+  "dependencies": {
+    "citty": "^0.1.6",
+    "eslint": "^9.39.1",
+    "eslint-flat-config-utils": "^2.1.4",
+    "eslint-plugin-jsonc": "^2.21.0",
+    "jsonc-eslint-parser": "^2.4.1"
+  },
   "devDependencies": {
     "@types/node": "^24.10.1",
     "bumpp": "^10.3.2",
     "tsdown": "^0.17.0",
     "typescript": "^5.9.2"
   },
-  "dependencies": {
-    "citty": "^0.1.6",
-    "eslint": "^9.39.1"
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
