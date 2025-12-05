@@ -54,6 +54,7 @@
     "citty": "^0.1.6",
     "eslint": "^9.39.1",
     "eslint-flat-config-utils": "^2.1.4",
+    "eslint-plugin-jsdoc": "^61.4.1",
     "eslint-plugin-jsonc": "^2.21.0",
     "jsonc-eslint-parser": "^2.4.1"
   },
