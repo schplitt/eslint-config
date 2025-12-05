@@ -48,8 +48,8 @@
   },
   "scripts": {
     "build": "tsdown",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "typecheck": "tsc --noEmit",
     "release": "bumpp && pnpm publish --access public"
   },
