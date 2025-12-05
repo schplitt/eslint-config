@@ -1,8 +1,8 @@
 import { FlatConfigComposer } from "eslint-flat-config-utils";
-import { jsoncRules, jsoncSetup, packageJsonPreset } from "./configs";
+import { jsoncPreset, packageJsonPreset } from "./configs";
 import type { Awaitable, Config, Options } from "./types";
 import { ignoresPreset } from "./configs/ignores";
-import { jsdoc } from "./configs/jsdoc";
+import { jsdocPreset } from "./configs/jsdoc";
 
 
 
@@ -25,21 +25,14 @@ export function schplitt(options: Options = {}): FlatConfigComposer<Config> {
     // defaults
     configs.push(
         ignoresPreset(ignores),
-        jsdoc({ stylistic })
+        jsdocPreset({ stylistic })
     )
 
+    // Each config brings its own plugin and parser setup
+    // They will override themselves, which is fine
 
-    // Check if ANY JSON-related option is enabled
-    const needsJsoncPlugin = packageJson || jsonc || tsconfig;
-
-    if (needsJsoncPlugin) {
-        // Enable jsonc plugin and parser ONCE for all JSON files
-        configs.push(jsoncSetup());
-    }
-
-    // Add specific rules only when their option is enabled
     if (jsonc) {
-        configs.push(jsoncRules());
+        configs.push(jsoncPreset());
     }
 
     if (packageJson) {

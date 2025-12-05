@@ -1,4 +1,5 @@
 import type { Config } from "../types";
+import { interopDefault } from "../utils";
 
 /**
  * All possible package.json keys in a strict, opinionated order.
@@ -182,15 +183,28 @@ const gitHooksOrder = [
 /**
  * Sort package.json keys and values
  *
- * Requires `eslint-plugin-jsonc` to be installed and configured
+ * Includes jsonc plugin and parser setup.
  *
  * @see https://ota-meshi.github.io/eslint-plugin-jsonc/rules/sort-keys.html
  */
-export function packageJsonPreset(): Config[] {
+export async function packageJsonPreset(): Promise<Config[]> {
+    const [
+        eslintPluginJsonc, jsoncEslintParser,
+    ] = await Promise.all([
+        interopDefault(import("eslint-plugin-jsonc")),
+        interopDefault(import("jsonc-eslint-parser")),
+    ]);
+
     return [
         {
             name: "schplitt/eslint-config:package-json",
             files: ["**/package.json"],
+            plugins: {
+                jsonc: eslintPluginJsonc as any,
+            },
+            languageOptions: {
+                parser: jsoncEslintParser,
+            },
             rules: {
                 // Sort the "files" array alphabetically
                 "jsonc/sort-array-values": [

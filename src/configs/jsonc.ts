@@ -2,11 +2,11 @@ import type { Config } from "../types";
 import { interopDefault } from "../utils";
 
 /**
- * Base JSONC setup - enables the parser and plugin.
- * This should be included when ANY JSON-related option is enabled.
+ * JSONC rules for all JSON files.
+ * Includes jsonc plugin and parser setup.
+ * Only applied when `jsonc: true` is set.
  */
-export async function jsoncSetup(): Promise<Config[]> {
-
+export async function jsoncPreset(): Promise<Config[]> {
     const [
         eslintPluginJsonc, jsoncEslintParser,
     ] = await Promise.all([
@@ -16,29 +16,17 @@ export async function jsoncSetup(): Promise<Config[]> {
 
     return [
         {
-            name: "schplitt/eslint-config:jsonc/setup",
+            name: "schplitt/eslint-config:jsonc",
+            files: ["**/*.json", "**/*.json5", "**/*.jsonc"],
             plugins: {
                 jsonc: eslintPluginJsonc as any,
             },
-        },
-        {
-            name: "schplitt/eslint-config:jsonc/parser",
-            files: ["**/*.json", "**/*.json5", "**/*.jsonc"],
             languageOptions: {
                 parser: jsoncEslintParser,
             },
-        },
-    ];
-}
-
-/**
- * General JSONC rules for all JSON files.
- * Only applied when `jsonc: true` is set.
- */
-export function jsoncRules(): Config[] {
-    return [
-        {
-         
+            rules: {
+                // Add JSONC rules here when needed
+            },
         },
     ];
 }
