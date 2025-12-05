@@ -1,6 +1,7 @@
 import { FlatConfigComposer } from "eslint-flat-config-utils";
 import { jsoncRules, jsoncSetup, packageJsonPreset } from "./configs";
 import type { Awaitable, Config, Options } from "./types";
+import { ignoresPreset } from "./configs/ignores";
 
 /**
  * Create an ESLint flat config with sensible defaults.
@@ -12,9 +13,17 @@ export function schplitt(options: Options = {}): FlatConfigComposer<Config> {
         packageJson = true,
         jsonc = false,
         tsconfig = true,
+        ignores = [],
     } = options 
 
     const configs: Awaitable<Config[]>[] = [];
+
+    // defaults
+
+    configs.push(
+        ignoresPreset(ignores)
+    )
+
 
     // Check if ANY JSON-related option is enabled
     const needsJsoncPlugin = packageJson || jsonc || tsconfig;
