@@ -1,5 +1,3 @@
-
-
 // Ignore patterns for files and directories
 export const IGNORE_GLOBS = [
   '**/node_modules',
@@ -18,7 +16,7 @@ export const IGNORE_GLOBS = [
   '**/.history',
   '**/.vitepress/cache',
   '**/.nuxt',
-  "**/.nitro",
+  '**/.nitro',
   '**/.next',
   '**/.svelte-kit',
   '**/.vercel',
@@ -36,10 +34,10 @@ export const IGNORE_GLOBS = [
   '**/__snapshots__',
   '**/auto-import?(s).d.ts',
   '**/components.d.ts',
-] as const;
+] as const
 
 /**
  * Glob patterns for TypeScript files
  */
-export const TS_GLOB = "**/*.?([cm])ts";
-export const TSX_GLOB = "**/*.?([cm])tsx";
+export const TS_GLOB = '**/*.?([cm])ts'
+export const TSX_GLOB = '**/*.?([cm])tsx'

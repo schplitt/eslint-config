@@ -1,3 +1,3 @@
-import schplitt from "./src/index"
+import schplitt from './src/index'
 
 export default schplitt()
