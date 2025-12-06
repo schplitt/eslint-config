@@ -38,9 +38,6 @@ export async function schplitt(options: Options = {}): Promise<FlatConfigCompose
         })
     )
 
-    // Each config brings its own plugin and parser setup
-    // They will override themselves, which is fine
-
     if (jsonc) {
         configs.push(jsoncPreset());
     }
