@@ -20,6 +20,7 @@ export async function schplitt(options: Options = {}): Promise<FlatConfigCompose
         tsconfig = true,
         ignores = [],
         stylistic = true,
+        typeAware = false,
     } = options 
 
     const isInEditor = isInEditorEnv()
@@ -30,7 +31,11 @@ export async function schplitt(options: Options = {}): Promise<FlatConfigCompose
     configs.push(
         ignoresPreset(ignores),
         javascriptPreset({ isInEditor }),
-        jsdocPreset({ stylistic })
+        jsdocPreset({ stylistic }),
+        typescriptPreset({
+            isInEditor,
+            typeAware
+        })
     )
 
     // Each config brings its own plugin and parser setup
@@ -45,7 +50,7 @@ export async function schplitt(options: Options = {}): Promise<FlatConfigCompose
     }
 
     if (tsconfig) {
-        configs.push(typescriptPreset({ isInEditor }));
+        // TODO: add tsconfig-specific config here
     }
 
 

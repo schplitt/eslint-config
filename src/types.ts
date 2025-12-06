@@ -1,4 +1,5 @@
 import type { Linter } from 'eslint'
+import type { TypeAwareOptions } from './configs'
 
 export type Awaitable<T> = T | Promise<T>
 
@@ -13,6 +14,7 @@ export interface Options {
     jsonc?: boolean
     ignores?: UserIgnores
     stylistic?: boolean
+    typeAware?: TypeAwareOptions
 }
 
 

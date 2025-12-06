@@ -8,12 +8,71 @@ import { GLOB_TS, GLOB_TSX } from "../globs";
 
 
 
+/**
+ * Create config file names with all JavaScript/TypeScript extensions.
+ * Generates combinations of .js, .mjs, .cjs for JavaScript and .ts, .mts, .cts for TypeScript.
+ * 
+ * @param baseName - The base name without extension (e.g., "eslint.config")
+ * @returns Array of filenames with all possible extensions
+ * 
+ * @example
+ * ```ts
+ * createConfigNames("vite.config")
+ * // => ["vite.config.js", "vite.config.mjs", "vite.config.cjs", 
+ * //      "vite.config.ts", "vite.config.mts", "vite.config.cts"]
+ * ```
+ */
+function createConfigNames(baseName: string): string[] {
+    return [
+        `${baseName}.js`,
+        `${baseName}.mjs`,
+        `${baseName}.cjs`,
+        `${baseName}.ts`,
+        `${baseName}.mts`,
+        `${baseName}.cts`,
+    ];
+}
+
+/**
+ * Default config files that are allowed in the project service's default project.
+ * These are common root-level config files that typically aren't included in tsconfig.json.
+ */
+export const DEFAULT_PROJECT_FILES: string[] = [
+    ...createConfigNames("eslint.config"),
+    ...createConfigNames("vite.config"),
+    ...createConfigNames("tsdown.config"),
+    ...createConfigNames("tsup.config"),
+    ...createConfigNames("nitro.config"),
+    ...createConfigNames("vitest.config"),
+    ...createConfigNames("playwright.config"),
+    ...createConfigNames("tailwind.config"),
+    ...createConfigNames("postcss.config"),
+    ...createConfigNames("uno.config"),
+];
+
 export interface TypescriptOptions {
-    /**
-     * Whether ESLint is running in an editor environment.
-     * When true, certain rules are relaxed for better DX while typing.
-     */
+
     isInEditor?: boolean;
+
+
+    typeAware?: TypeAwareOptions;
+}
+
+export type TypeAwareOptions = boolean | {
+    /**
+     * Additional files to include in the project service's allowDefaultProject.
+     * These files will be type-checked even if not included in tsconfig.json.
+     * Only used when typeAware is enabled.
+     * 
+     * @example
+     * ```ts
+     * typescriptPreset({
+     *   typeAware: true,
+     *   extraFilesForDefaultProject: ["custom.config.ts", "scripts/build.ts"]
+     * })
+     * ```
+     */
+    extraFilesForDefaultProject?: string[];
 }
 
 /**
@@ -22,7 +81,7 @@ export interface TypescriptOptions {
  * @param options - Configuration options
  */
 export async function typescriptPreset(options: TypescriptOptions = {}): Promise<Config[]> {
-    const { isInEditor = false } = options;
+    const { isInEditor = false, typeAware = false } = options;
     
     return [
         {
@@ -30,18 +89,18 @@ export async function typescriptPreset(options: TypescriptOptions = {}): Promise
             files: [GLOB_TS, GLOB_TSX],
             languageOptions: {
                 parser: parserTs,
-                parserOptions: {
+                parserOptions: typeAware ? {
                     projectService: {
-                        allowDefaultProject: ["./*.js"],
+                        allowDefaultProject: [...DEFAULT_PROJECT_FILES, ... ((typeAware && typeof typeAware === 'object') ? typeAware?.extraFilesForDefaultProject ?? [] : [])],
                     },
                     tsconfigRootDir: process.cwd(),
+                    sourceType: "module",
+                } : {
                     sourceType: "module",
                 },
             },
             plugins: {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 "@typescript-eslint": pluginTs as any,
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 "erasable-syntax-only": pluginErasableSyntaxOnly as any,
             },
             rules: {
@@ -91,25 +150,26 @@ export async function typescriptPreset(options: TypescriptOptions = {}): Promise
                 // ══════════════════════════════════════════════════════════════
                 // Type-Aware Rules (require projectService)
                 // ══════════════════════════════════════════════════════════════
-                "@typescript-eslint/await-thenable": "error",
-                "@typescript-eslint/dot-notation": ["error", { allowKeywords: true }],
-                "@typescript-eslint/no-floating-promises": "error",
-                "@typescript-eslint/no-for-in-array": "error",
-                "@typescript-eslint/no-implied-eval": "error",
-                "@typescript-eslint/no-misused-promises": "error",
-                "@typescript-eslint/no-unnecessary-type-assertion": "error",
-                "@typescript-eslint/no-unsafe-argument": "error",
-                "@typescript-eslint/no-unsafe-assignment": isInEditor ? "warn" : "error",
-                "@typescript-eslint/no-unsafe-call": "error",
-                "@typescript-eslint/no-unsafe-member-access": "error",
-                "@typescript-eslint/no-unsafe-return": "error",
-                "@typescript-eslint/promise-function-async": "error",
-                "@typescript-eslint/restrict-plus-operands": "error",
-                "@typescript-eslint/restrict-template-expressions": "error",
-                "@typescript-eslint/return-await": ["error", "in-try-catch"],
-                "@typescript-eslint/strict-boolean-expressions": ["error", { allowNullableBoolean: true, allowNullableObject: true }],
-                "@typescript-eslint/switch-exhaustiveness-check": "error",
-                "@typescript-eslint/unbound-method": "error",
+                ...(typeAware ? {
+                    "@typescript-eslint/await-thenable": "error",
+                    "@typescript-eslint/dot-notation": ["error", { allowKeywords: true }],
+                    "@typescript-eslint/no-floating-promises": "error",
+                    "@typescript-eslint/no-for-in-array": "error",
+                    "@typescript-eslint/no-implied-eval": "error",
+                    "@typescript-eslint/no-misused-promises": "error",
+                    "@typescript-eslint/no-unnecessary-type-assertion": "error",
+                    "@typescript-eslint/no-unsafe-argument": isInEditor ? "warn" : "error",
+                    "@typescript-eslint/no-unsafe-assignment": isInEditor ? "warn" : "error",
+                    "@typescript-eslint/no-unsafe-call": isInEditor ? "warn" : "error",
+                    "@typescript-eslint/no-unsafe-member-access": ["error", { allowOptionalChaining: true}],
+                    "@typescript-eslint/no-unsafe-return": isInEditor ? "warn" : "error",
+                    "@typescript-eslint/promise-function-async": "error",
+                    "@typescript-eslint/restrict-plus-operands": "error",
+                    "@typescript-eslint/restrict-template-expressions": "error",
+                    "@typescript-eslint/return-await": ["error", "in-try-catch"],
+                    "@typescript-eslint/switch-exhaustiveness-check": "error",
+                    "@typescript-eslint/unbound-method": "error",
+                } : {}),
 
                 // ══════════════════════════════════════════════════════════════
                 // Erasable Syntax Only Rules
