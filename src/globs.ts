@@ -1,6 +1,6 @@
 
 
-
+// Ignore patterns for files and directories
 export const IGNORE_GLOBS = [
   '**/node_modules',
   '**/dist',
@@ -37,3 +37,9 @@ export const IGNORE_GLOBS = [
   '**/auto-import?(s).d.ts',
   '**/components.d.ts',
 ] as const;
+
+/**
+ * Glob patterns for TypeScript files
+ */
+export const GLOB_TS = "**/*.?([cm])ts";
+export const GLOB_TSX = "**/*.?([cm])tsx";
