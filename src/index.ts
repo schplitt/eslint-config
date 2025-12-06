@@ -1,8 +1,6 @@
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { javascriptPreset, jsoncPreset, packageJsonPreset, stylisticPreset, typescriptPreset } from './configs'
+import { javascriptPreset, jsoncPreset, packageJsonPreset, stylisticPreset, typescriptPreset, ignoresPreset, jsdocPreset } from './configs'
 import type { Awaitable, Config, Options } from './types'
-import { ignoresPreset } from './configs/ignores'
-import { jsdocPreset } from './configs/jsdoc'
 import { isInEditorEnv } from './utils'
 
 /**
