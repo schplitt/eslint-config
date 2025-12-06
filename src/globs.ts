@@ -41,5 +41,5 @@ export const IGNORE_GLOBS = [
 /**
  * Glob patterns for TypeScript files
  */
-export const GLOB_TS = "**/*.?([cm])ts";
-export const GLOB_TSX = "**/*.?([cm])tsx";
+export const TS_GLOB = "**/*.?([cm])ts";
+export const TSX_GLOB = "**/*.?([cm])tsx";

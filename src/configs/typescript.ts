@@ -4,7 +4,7 @@ import process from "node:process";
 import pluginTs from "@typescript-eslint/eslint-plugin";
 import parserTs from "@typescript-eslint/parser";
 import pluginErasableSyntaxOnly from "eslint-plugin-erasable-syntax-only";
-import { GLOB_TS, GLOB_TSX } from "../globs";
+import { TSX_GLOB, TS_GLOB } from "../globs";
 
 
 
@@ -86,7 +86,7 @@ export async function typescriptPreset(options: TypescriptOptions = {}): Promise
     return [
         {
             name: "schplitt/eslint-config:typescript",
-            files: [GLOB_TS, GLOB_TSX],
+            files: [TS_GLOB, TSX_GLOB],
             languageOptions: {
                 parser: parserTs,
                 parserOptions: typeAware ? {
