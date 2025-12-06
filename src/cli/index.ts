@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { defineCommand, runMain } from "citty";
 import pkgJson from "../../package.json" assert { type: "json" };
 
@@ -19,4 +20,7 @@ const main = defineCommand({
   },
 });
 
-runMain(main);
+runMain(main).catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

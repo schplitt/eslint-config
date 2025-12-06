@@ -12,6 +12,7 @@ export interface JavascriptOptions {
 /**
  * JavaScript preset with sensible defaults.
  * Includes globals, antfu plugin, and unused-imports plugin.
+ * @param options - Configuration options
  */
 export async function javascriptPreset(options: JavascriptOptions = {}): Promise<Config[]> {
     const {

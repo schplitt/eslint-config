@@ -51,10 +51,13 @@
     "release": "bumpp && pnpm publish --access public"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.48.1",
+    "@typescript-eslint/parser": "^8.48.1",
     "citty": "^0.1.6",
     "eslint": "^9.39.1",
     "eslint-flat-config-utils": "^2.1.4",
     "eslint-plugin-antfu": "^3.1.1",
+    "eslint-plugin-erasable-syntax-only": "^0.4.0",
     "eslint-plugin-jsdoc": "^61.4.1",
     "eslint-plugin-jsonc": "^2.21.0",
     "eslint-plugin-unused-imports": "^4.3.0",
