@@ -51,6 +51,7 @@
     "release": "bumpp && pnpm publish --access public"
   },
   "dependencies": {
+    "@stylistic/eslint-plugin": "^5.6.1",
     "@typescript-eslint/eslint-plugin": "^8.48.1",
     "@typescript-eslint/parser": "^8.48.1",
     "citty": "^0.1.6",
