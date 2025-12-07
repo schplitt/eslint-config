@@ -1,5 +1,5 @@
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { javascriptPreset, jsoncPreset, packageJsonPreset, stylisticPreset, typescriptPreset, ignoresPreset, jsdocPreset } from './configs'
+import { javascriptPreset, jsoncPreset, packageJsonPreset, stylisticPreset, tsconfigPreset, typescriptPreset, ignoresPreset, jsdocPreset } from './configs'
 import type { Awaitable, Config, Options } from './types'
 import { isInEditorEnv } from './utils'
 
@@ -49,7 +49,7 @@ export async function schplitt(options: Options = {}): Promise<FlatConfigCompose
   }
 
   if (tsconfig) {
-    // TODO: add tsconfig-specific config here
+    configs.push(tsconfigPreset())
   }
 
   const composer = new FlatConfigComposer<Config>().append(...configs)
