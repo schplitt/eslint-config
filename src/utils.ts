@@ -25,3 +25,27 @@ export function isInEditorEnv(): boolean {
     || process.env.NVIM
   )
 }
+
+/**
+ * Plain parser for non-JS files that need ESLint formatting
+ */
+export const parserPlain = {
+  meta: {
+    name: 'parser-plain',
+  },
+  parseForESLint: (code: string) => ({
+    ast: {
+      body: [] as any[],
+      comments: [] as any[],
+      loc: { end: code.length, start: 0 } as { end: number, start: number },
+      range: [0, code.length] as [number, number],
+      tokens: [] as any[],
+      type: 'Program' as const,
+    },
+    scopeManager: null,
+    services: { isPlain: true },
+    visitorKeys: {
+      Program: [] as string[],
+    },
+  }),
+}

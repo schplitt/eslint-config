@@ -1,3 +1,4 @@
+import { COMPLETE_JS_TS_GLOB, MARKDOWN_CODE_GLOB, MARKDOWN_GLOB, MARKDOWN_IN_MARKDOWN_GLOB } from '../globs'
 import type { Config } from '../types'
 
 import { interopDefault } from '../utils'
@@ -13,6 +14,8 @@ export async function jsdocPreset(options: { stylistic?: boolean } = {}): Promis
       plugins: {
         jsdoc: await interopDefault(import('eslint-plugin-jsdoc')),
       },
+      files: [COMPLETE_JS_TS_GLOB, MARKDOWN_CODE_GLOB],
+      ignores: [MARKDOWN_GLOB, MARKDOWN_IN_MARKDOWN_GLOB],
       rules: {
         'jsdoc/check-access': 'warn',
         'jsdoc/check-param-names': 'warn',

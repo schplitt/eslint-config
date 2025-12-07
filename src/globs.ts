@@ -41,3 +41,12 @@ export const IGNORE_GLOBS = [
  */
 export const TS_GLOB = '**/*.?([cm])ts'
 export const TSX_GLOB = '**/*.?([cm])tsx'
+
+export const COMPLETE_JS_TS_GLOB = '**/*.?([cm])[jt]s?([x])'
+
+/**
+ * Glob patterns for Markdown files
+ */
+export const MARKDOWN_GLOB = '**/*.md'
+export const MARKDOWN_CODE_GLOB = '**/*.md/**'
+export const MARKDOWN_IN_MARKDOWN_GLOB = '**/*.md/*.md'
