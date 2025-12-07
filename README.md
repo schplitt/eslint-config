@@ -1,14 +1,13 @@
-# @schplitt/eslint-config
+# schplitt/eslint-config
 
 My ESLint config. Flat config, TypeScript, Vue, Angular, whatever.
-
 Uses [@stylistic/eslint-plugin](https://github.com/eslint-stylistic/eslint-stylistic) for consistent code styling instead of Prettier.
 
 ## Setup
 
 Run the CLI to set up your project or migrate from legacy config:
 
-```bash
+```sh
 pnpm dlx @schplitt/eslint-config@latest
 ```
 
@@ -16,7 +15,7 @@ It'll create an `eslint.config.js` and update your `package.json` scripts.
 
 ## Manual Install
 
-```bash
+```sh
 pnpm add -D @schplitt/eslint-config eslint
 ```
 

@@ -10,6 +10,7 @@ export interface Options {
   packageJson?: boolean
   tsconfig?: boolean
   jsonc?: boolean
+  markdown?: boolean
   ignores?: UserIgnores
   stylistic?: boolean | StylisticConfig
   typeAware?: boolean | TypeAwareOptions

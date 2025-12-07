@@ -4,6 +4,7 @@ import globals from 'globals'
 
 import pluginAntfu from 'eslint-plugin-antfu'
 import pluginUnusedImports from 'eslint-plugin-unused-imports'
+import { COMPLETE_JS_TS_GLOB, MARKDOWN_CODE_GLOB, MARKDOWN_GLOB, MARKDOWN_IN_MARKDOWN_GLOB } from '../globs'
 
 export interface JavascriptOptions {
   isInEditor?: boolean
@@ -22,6 +23,8 @@ export async function javascriptPreset(options: JavascriptOptions = {}): Promise
   return [
     {
       name: 'schplitt/eslint-config:javascript',
+      files: [COMPLETE_JS_TS_GLOB, MARKDOWN_CODE_GLOB],
+      ignores: [MARKDOWN_GLOB, MARKDOWN_IN_MARKDOWN_GLOB],
       languageOptions: {
         ecmaVersion: 'latest',
         globals: {

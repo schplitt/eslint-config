@@ -1,5 +1,5 @@
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { javascriptPreset, jsoncPreset, packageJsonPreset, stylisticPreset, tsconfigPreset, typescriptPreset, ignoresPreset, jsdocPreset } from './configs'
+import { javascriptPreset, jsoncPreset, packageJsonPreset, stylisticPreset, tsconfigPreset, typescriptPreset, ignoresPreset, jsdocPreset, markdownPreset } from './configs'
 import type { Awaitable, Config, Options } from './types'
 import { isInEditorEnv } from './utils'
 
@@ -8,12 +8,13 @@ import { isInEditorEnv } from './utils'
  * @param options - Configuration options
  * @returns FlatConfigComposer that can be used directly as ESLint config
  */
-export async function schplitt(options: Options = {}): Promise<FlatConfigComposer<Config>> {
+export function schplitt(options: Options = {}): FlatConfigComposer<Config> {
   // Merge defaults with user options
   const {
     packageJson = true,
     jsonc = false,
     tsconfig = true,
+    markdown = true,
     ignores = [],
     stylistic = true,
     typeAware = false,
@@ -50,6 +51,10 @@ export async function schplitt(options: Options = {}): Promise<FlatConfigCompose
 
   if (tsconfig) {
     configs.push(tsconfigPreset())
+  }
+
+  if (markdown) {
+    configs.push(markdownPreset())
   }
 
   const composer = new FlatConfigComposer<Config>().append(...configs)

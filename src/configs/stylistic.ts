@@ -1,3 +1,4 @@
+import { MARKDOWN_GLOB, MARKDOWN_IN_MARKDOWN_GLOB } from '../globs'
 import type { Config } from '../types'
 import { interopDefault } from '../utils'
 
@@ -65,6 +66,7 @@ export async function stylisticPreset(
         antfu: pluginAntfu,
         style: pluginStylistic,
       },
+      ignores: [MARKDOWN_GLOB, MARKDOWN_IN_MARKDOWN_GLOB],
       rules: {
         ...config.rules,
 
