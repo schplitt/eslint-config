@@ -1,7 +1,8 @@
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { angularPreset, javascriptPreset, jsoncPreset, nodePreset, packageJsonPreset, stylisticPreset, tsconfigPreset, typescriptPreset, ignoresPreset, jsdocPreset, markdownPreset } from './configs'
+import { angularPreset, javascriptPreset, jsoncPreset, nodePreset, packageJsonPreset, stylisticPreset, tsconfigPreset, typescriptPreset, ignoresPreset, jsdocPreset, markdownPreset, pnpmPreset } from './configs'
 import type { Awaitable, Config, Options } from './types'
 import { isInEditorEnv } from './utils'
+import { findUpSync } from 'find-up-simple'
 
 /**
  * Create an ESLint flat config with sensible defaults.
@@ -19,6 +20,7 @@ export function schplitt(options: Options = {}): FlatConfigComposer<Config> {
     ignores = [],
     stylistic = true,
     typeAware = false,
+    pnpm = findUpSync('pnpm-lock.yaml') !== undefined,
   } = options
 
   const isInEditor = isInEditorEnv()
@@ -45,7 +47,7 @@ export function schplitt(options: Options = {}): FlatConfigComposer<Config> {
 
   if (angular) {
     configs.push(
-      angularPreset(typeof angular === 'boolean' ? {} : angular),
+      angularPreset(typeof angular === 'boolean' ? { isInEditor } : { ...angular, isInEditor }),
     )
   }
 
@@ -63,6 +65,12 @@ export function schplitt(options: Options = {}): FlatConfigComposer<Config> {
 
   if (markdown) {
     configs.push(markdownPreset())
+  }
+
+  if (pnpm) {
+    configs.push(
+      pnpmPreset(typeof pnpm === 'boolean' ? { isInEditor } : { ...pnpm, isInEditor }),
+    )
   }
 
   const composer = new FlatConfigComposer<Config>().append(...configs)
