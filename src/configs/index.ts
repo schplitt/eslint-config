@@ -1,4 +1,5 @@
 export * from './angular'
+export * from './comments'
 export * from './ignores'
 export * from './javascript'
 export * from './jsdoc'
