@@ -1,7 +1,6 @@
-import type { Config, StylisticOptions } from "../types"
+import type { Config, StylisticOptions } from '../types'
 import pluginImportLite from 'eslint-plugin-import-lite'
 import pluginAntfu from 'eslint-plugin-antfu'
-
 
 export async function importsPreset(options: StylisticOptions = {}): Promise<Config[]> {
   const {
