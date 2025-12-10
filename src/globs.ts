@@ -48,5 +48,20 @@ export const COMPLETE_JS_TS_GLOB = '**/*.?([cm])[jt]s?([x])'
  * Glob patterns for Markdown files
  */
 export const MARKDOWN_GLOB = '**/*.md'
+
+/**
+ * Create Angular-specific glob patterns based on project path
+ * @param projectPath - The root path for Angular files (default: 'app')
+ */
+export function createAngularGlobs(projectPath: string = 'app') {
+  // Normalize path - remove leading/trailing slashes
+  const normalizedPath = projectPath.replaceAll(/^\/+|\/+$/g, '')
+
+  return {
+    ts: `**/${normalizedPath}/**/*.?([cm])ts`,
+    tsx: `**/${normalizedPath}/**/*.?([cm])tsx`,
+    html: `**/${normalizedPath}/**/*.html`,
+  }
+}
 export const MARKDOWN_CODE_GLOB = '**/*.md/**'
 export const MARKDOWN_IN_MARKDOWN_GLOB = '**/*.md/*.md'
