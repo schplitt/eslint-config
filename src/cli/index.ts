@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { defineCommand, runMain } from 'citty'
 import pkgJson from '../../package.json' assert { type: 'json' }
+import process from 'process'
 
 const main = defineCommand({
   meta: {
