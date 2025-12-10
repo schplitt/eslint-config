@@ -55,16 +55,19 @@ export async function pnpmPreset(
       rules: {
         ...(catalogs
           ? {
+              // Enforce catalog usage for dependencies
               'pnpm/json-enforce-catalog': [
                 'error',
                 { autofix: !isInEditor },
               ],
             }
           : {}),
+        // Prefer workspace protocol for local dependencies
         'pnpm/json-prefer-workspace-settings': [
           'error',
           { autofix: !isInEditor },
         ],
+        // Validate catalog references in dependencies
         'pnpm/json-valid-catalog': [
           'error',
           { autofix: !isInEditor },
@@ -81,6 +84,7 @@ export async function pnpmPreset(
         pnpm: pluginPnpm,
       },
       rules: {
+        // Enforce settings in pnpm-workspace.yaml
         'pnpm/yaml-enforce-settings': ['error', {
           settings: {
             catalogMode: 'prefer',
@@ -88,7 +92,9 @@ export async function pnpmPreset(
             trustPolicy: 'no-downgrade',
           },
         }],
+        // Disallow duplicate catalog items
         'pnpm/yaml-no-duplicate-catalog-item': 'error',
+        // Disallow unused catalog items
         'pnpm/yaml-no-unused-catalog-item': 'error',
       },
     },
