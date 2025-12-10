@@ -1,3 +1,4 @@
+import type { StylisticConfig } from './configs'
 import type { Awaitable } from './types'
 import process from 'process'
 
@@ -49,4 +50,12 @@ export const parserPlain = {
       Program: [] as string[],
     },
   }),
+}
+
+export const DEFAULT_STYLISTIC_CONFIG: Required<StylisticConfig> = {
+  experimental: false,
+  indent: 2,
+  jsx: true,
+  quotes: 'single',
+  semi: false,
 }

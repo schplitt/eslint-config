@@ -3,7 +3,11 @@ import type { Config } from '../types'
 
 import { interopDefault } from '../utils'
 
-export async function jsdocPreset(options: { stylistic?: boolean } = {}): Promise<Config[]> {
+export interface JSDOCOptions {
+  stylistic?: boolean
+}
+
+export async function jsdocPreset(options: JSDOCOptions = {}): Promise<Config[]> {
   const {
     stylistic = true,
   } = options

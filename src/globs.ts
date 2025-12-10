@@ -65,3 +65,5 @@ export function createAngularGlobs(projectPath: string = 'app') {
 }
 export const MARKDOWN_CODE_GLOB = '**/*.md/**'
 export const MARKDOWN_IN_MARKDOWN_GLOB = '**/*.md/*.md'
+
+export const VUE_GLOB = '**/*.vue'

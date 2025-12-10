@@ -1,8 +1,8 @@
 import { MARKDOWN_GLOB, MARKDOWN_IN_MARKDOWN_GLOB } from '../globs'
 import type { Config } from '../types'
-import { interopDefault } from '../utils'
+import { DEFAULT_STYLISTIC_CONFIG, interopDefault } from '../utils'
 
-export type StylisticConfig = boolean | {
+export interface StylisticConfig {
   /**
    * Enable experimental rules
    * @default false
@@ -31,19 +31,19 @@ export type StylisticConfig = boolean | {
 }
 
 export async function stylisticPreset(
-  options: StylisticConfig = {},
+  options: StylisticConfig = DEFAULT_STYLISTIC_CONFIG,
 ): Promise<Config[]> {
   if (!options) {
     return []
   }
 
   const {
-    experimental = false,
-    indent = 2,
-    jsx = true,
-    quotes = 'single',
-    semi = false,
-  } = options === true ? {} : options
+    experimental = DEFAULT_STYLISTIC_CONFIG.experimental,
+    indent = DEFAULT_STYLISTIC_CONFIG.indent,
+    jsx = DEFAULT_STYLISTIC_CONFIG.jsx,
+    quotes = DEFAULT_STYLISTIC_CONFIG.quotes,
+    semi = DEFAULT_STYLISTIC_CONFIG.semi,
+  } = options
 
   const [pluginStylistic, pluginAntfu] = await Promise.all([
     interopDefault(import('@stylistic/eslint-plugin')),

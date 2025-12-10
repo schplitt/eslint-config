@@ -1,5 +1,5 @@
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { angularPreset, javascriptPreset, jsoncPreset, nodePreset, packageJsonPreset, stylisticPreset, tsconfigPreset, typescriptPreset, ignoresPreset, jsdocPreset, markdownPreset, pnpmPreset, commentsPreset, importsPreset } from './configs'
+import { angularPreset, javascriptPreset, jsoncPreset, nodePreset, packageJsonPreset, stylisticPreset, tsconfigPreset, typescriptPreset, ignoresPreset, jsdocPreset, markdownPreset, pnpmPreset, commentsPreset, importsPreset, vuePreset } from './configs'
 import type { Awaitable, Config, Options } from './types'
 import { isInEditorEnv } from './utils'
 import { findUpSync } from 'find-up-simple'
@@ -17,6 +17,7 @@ export function schplitt(options: Options = {}): FlatConfigComposer<Config> {
     tsconfig = true,
     markdown = true,
     angular = false,
+    vue = false,
     ignores = [],
     stylistic = true,
     typeAware = false,
@@ -72,6 +73,12 @@ export function schplitt(options: Options = {}): FlatConfigComposer<Config> {
   if (pnpm) {
     configs.push(
       pnpmPreset(typeof pnpm === 'boolean' ? { isInEditor } : { ...pnpm, isInEditor }),
+    )
+  }
+
+  if (vue) {
+    configs.push(
+      vuePreset(typeof vue === 'boolean' ? {} : vue),
     )
   }
 
