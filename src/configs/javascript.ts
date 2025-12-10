@@ -1,4 +1,4 @@
-import type { Config } from '../types'
+import type { CommonOptions, Config } from '../types'
 
 import globals from 'globals'
 
@@ -6,16 +6,12 @@ import pluginAntfu from 'eslint-plugin-antfu'
 import pluginUnusedImports from 'eslint-plugin-unused-imports'
 import { COMPLETE_JS_TS_GLOB, MARKDOWN_CODE_GLOB, MARKDOWN_GLOB, MARKDOWN_IN_MARKDOWN_GLOB } from '../globs'
 
-export interface JavascriptOptions {
-  isInEditor?: boolean
-}
-
 /**
  * JavaScript preset with sensible defaults.
  * Includes globals, antfu plugin, and unused-imports plugin.
  * @param options - Configuration options
  */
-export async function javascriptPreset(options: JavascriptOptions = {}): Promise<Config[]> {
+export async function javascriptPreset(options: CommonOptions = {}): Promise<Config[]> {
   const {
     isInEditor = false,
   } = options

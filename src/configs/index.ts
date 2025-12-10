@@ -1,3 +1,4 @@
+export * from './angular'
 export * from './ignores'
 export * from './javascript'
 export * from './jsdoc'

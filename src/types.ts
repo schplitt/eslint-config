@@ -1,5 +1,5 @@
 import type { Linter } from 'eslint'
-import type { TypeAwareOptions } from './configs'
+import type { AngularOptions, TypeAwareOptions } from './configs'
 import type { StylisticConfig } from './configs/stylistic'
 
 export type Awaitable<T> = T | Promise<T>
@@ -11,9 +11,14 @@ export interface Options {
   tsconfig?: boolean
   jsonc?: boolean
   markdown?: boolean
+  angular?: boolean | AngularOptions
   ignores?: UserIgnores
   stylistic?: boolean | StylisticConfig
   typeAware?: boolean | TypeAwareOptions
 }
 
 export type UserIgnores = Awaitable<string[]> | (() => Awaitable<string[]>)
+
+export interface CommonOptions {
+  isInEditor?: boolean
+}
