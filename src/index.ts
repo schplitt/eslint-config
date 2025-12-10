@@ -1,5 +1,5 @@
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { angularPreset, javascriptPreset, jsoncPreset, packageJsonPreset, stylisticPreset, tsconfigPreset, typescriptPreset, ignoresPreset, jsdocPreset, markdownPreset } from './configs'
+import { angularPreset, javascriptPreset, jsoncPreset, nodePreset, packageJsonPreset, stylisticPreset, tsconfigPreset, typescriptPreset, ignoresPreset, jsdocPreset, markdownPreset } from './configs'
 import type { Awaitable, Config, Options } from './types'
 import { isInEditorEnv } from './utils'
 
@@ -30,6 +30,7 @@ export function schplitt(options: Options = {}): FlatConfigComposer<Config> {
     ignoresPreset(ignores),
     javascriptPreset({ isInEditor }),
     jsdocPreset({ stylistic: !!stylistic }),
+    nodePreset(),
     typescriptPreset({
       isInEditor,
       typeAware,
