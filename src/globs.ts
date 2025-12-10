@@ -56,7 +56,7 @@ export const MARKDOWN_GLOB = '**/*.md'
 export function createAngularGlobs(projectPath: string = 'app') {
   // Normalize path - remove leading/trailing slashes
   const normalizedPath = projectPath.replaceAll(/^\/+|\/+$/g, '')
-  
+
   return {
     ts: `**/${normalizedPath}/**/*.?([cm])ts`,
     tsx: `**/${normalizedPath}/**/*.?([cm])tsx`,
