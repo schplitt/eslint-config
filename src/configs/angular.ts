@@ -120,6 +120,8 @@ export async function angularPreset(options: AngularOptions & CommonOptions = {}
         '@angular-eslint/template/prefer-self-closing-tags': isInEditor ? 'warn' : 'error',
         '@angular-eslint/template/prefer-static-string-properties': isInEditor ? 'warn' : 'error',
         '@angular-eslint/template/prefer-template-literal': isInEditor ? 'warn' : 'error',
+
+        // TODO: add angular a11y support
       },
     },
   ]
