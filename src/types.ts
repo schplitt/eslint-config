@@ -23,3 +23,7 @@ export type UserIgnores = Awaitable<string[]> | (() => Awaitable<string[]>)
 export interface CommonOptions {
   isInEditor?: boolean
 }
+
+export interface StylisticOptions {
+  stylistic?: boolean
+}
