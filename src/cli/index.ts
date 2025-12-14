@@ -18,18 +18,6 @@ const main = defineCommand({
   args: {},
 
   run: async () => {
-    // things we have to do/set up
-    // 1. check if we are in a git context
-    // if yes we want to get the root dir of the git repo
-    // if no, we find the closest package.json upwards and use that dir as root
-
-    // when we have found the dir we want to work in
-
-    // we create the eslint.config.js file with the default schplitt config
-    // we have to add the dependencies
-    // we could however also you nypm and install them directly and not only add them to package.json
-    // also the .vscode settings should be created/added here on user feedback
-
     const projectDir = await findClosestPackageJsonDir()
 
     if (!projectDir) {
