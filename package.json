@@ -49,7 +49,7 @@
     "lint:fix": "eslint --fix",
     "typecheck": "tsc --noEmit",
     "prerelease": "eslint && tsc --noEmit && pnpm build",
-    "release": "bumpp && pnpm publish --access public"
+    "release": "bumpp"
   },
   "dependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.5.0",
