@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { defineCommand, runMain } from 'citty'
 import pkgJson from '../../package.json' assert { type: 'json' }
 import process from 'process'
