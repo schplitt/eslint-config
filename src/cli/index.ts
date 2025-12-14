@@ -35,7 +35,7 @@ const main = defineCommand({
       return
     }
 
-    await addDevDependency(['eslint@latest', '@schplitt/eslint-config@latest'], { cwd: projectDir, silent: true })
+    await addDevDependency(['eslint@latest', `${pkgJson.name}@latest`], { cwd: projectDir, silent: true })
 
     createOrOverwriteESLintConfigFile(projectDir)
 
