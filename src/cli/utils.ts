@@ -128,3 +128,34 @@ export function setupVSCodeSettings(projectDir: string): void {
   // Write updated settings back to file
   fs.writeFileSync(settingsFile, JSON.stringify(settings, null, 2), { encoding: 'utf-8' })
 }
+
+export function addESLintScriptsToPackageJson(projectDir: string): void {
+  const packageJsonPath = path.join(projectDir, 'package.json')
+
+  if (!fs.existsSync(packageJsonPath)) {
+    consola.warn('Could not find package.json in project directory')
+    return
+  }
+
+  try {
+    // Read and parse package.json
+    const content = fs.readFileSync(packageJsonPath, 'utf-8')
+    const packageJson = JSON.parse(content)
+
+    // Create scripts object if it doesn't exist
+    if (!packageJson.scripts) {
+      packageJson.scripts = {}
+    }
+
+    // Add lint scripts
+    packageJson.scripts.lint = 'eslint'
+    packageJson.scripts['lint:fix'] = 'eslint --fix'
+
+    // Write updated package.json back to file
+    fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`, { encoding: 'utf-8' })
+
+    consola.success('Added lint scripts to package.json')
+  } catch (error) {
+    consola.error('Failed to update package.json:', error)
+  }
+}
