@@ -19,9 +19,9 @@ It'll create an `eslint.config.js` and update your `package.json` scripts.
 pnpm add -D @schplitt/eslint-config eslint
 ```
 
-Create `eslint.config.ts`:
+Create `eslint.config.js`:
 
-```ts
+```js
 import schplitt from '@schplitt/eslint-config'
 
 export default schplitt()
