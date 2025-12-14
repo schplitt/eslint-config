@@ -29,6 +29,9 @@ importers:
       citty:
         specifier: ^0.1.6
         version: 0.1.6
+      consola:
+        specifier: ^3.4.2
+        version: 3.4.2
       eslint:
         specifier: ^9.39.1
         version: 9.39.1(jiti@2.6.1)
@@ -80,6 +83,12 @@ importers:
       jsonc-eslint-parser:
         specifier: ^2.4.1
         version: 2.4.1
+      nypm:
+        specifier: ^0.6.2
+        version: 0.6.2
+      tinyexec:
+        specifier: ^1.0.2
+        version: 1.0.2
       vue-eslint-parser:
         specifier: ^10.2.0
         version: 10.2.0(eslint@9.39.1(jiti@2.6.1))
