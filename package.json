@@ -48,6 +48,7 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "typecheck": "tsc --noEmit",
+    "prerelease": "eslint && tsc --noEmit && pnpm build",
     "release": "bumpp && pnpm publish --access public"
   },
   "dependencies": {
