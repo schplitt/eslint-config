@@ -31,8 +31,6 @@ const main = defineCommand({
 
     addESLintScriptsToPackageJson(projectDir)
 
-    // now we ask the user if he ALSO wants to set up the .vscode settings for ESLint
-
     const answer = await consola.prompt('Do you want to set up VSCode settings for ESLint?', {
       type: 'confirm',
       cancel: 'reject',
