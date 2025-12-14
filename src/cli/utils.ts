@@ -51,7 +51,7 @@ export async function createOrOverwriteESLintConfigFile(
     })
   }
 
-  const newFilePath = path.join(dir, 'eslint.config.ts')
+  const newFilePath = path.join(dir, 'eslint.config.js')
   fs.writeFileSync(newFilePath, eslintConfigTemplate, { encoding: 'utf-8' })
 }
 
