@@ -6,7 +6,7 @@ import process from 'process'
 import {
   addDevDependency,
 } from 'nypm'
-import { createOrOverwriteESLintConfigFile, findClosestPackageJsonDir, setupVSCodeSettings } from './utils'
+import { addESLintScriptsToPackageJson, createOrOverwriteESLintConfigFile, findClosestPackageJsonDir, setupVSCodeSettings } from './utils'
 import consola from 'consola'
 
 const main = defineCommand({
@@ -28,6 +28,8 @@ const main = defineCommand({
     await addDevDependency(['eslint@latest', `${pkgJson.name}@latest`], { cwd: projectDir, silent: true })
 
     createOrOverwriteESLintConfigFile(projectDir)
+
+    addESLintScriptsToPackageJson(projectDir)
 
     // now we ask the user if he ALSO wants to set up the .vscode settings for ESLint
 
