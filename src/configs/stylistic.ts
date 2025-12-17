@@ -1,4 +1,4 @@
-import { MARKDOWN_GLOB, MARKDOWN_IN_MARKDOWN_GLOB } from '../globs'
+import { MARKDOWN_GLOB, MARKDOWN_IN_MARKDOWN_GLOB, COMPLETE_JS_TS_GLOB } from '../globs'
 import type { Config } from '../types'
 import { DEFAULT_STYLISTIC_CONFIG, interopDefault } from '../utils'
 
@@ -62,6 +62,7 @@ export async function stylisticPreset(
   return [
     {
       name: 'schplitt/eslint-config:stylistic',
+      files: [COMPLETE_JS_TS_GLOB],
       plugins: {
         antfu: pluginAntfu,
         style: pluginStylistic,
