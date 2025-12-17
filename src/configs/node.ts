@@ -1,4 +1,5 @@
 import type { Config } from '../types'
+import { COMPLETE_JS_TS_GLOB } from '../globs'
 import pluginNode from 'eslint-plugin-n'
 
 /**
@@ -9,6 +10,7 @@ export async function nodePreset(): Promise<Config[]> {
   return [
     {
       name: 'schplitt/eslint-config:node',
+      files: [COMPLETE_JS_TS_GLOB],
       plugins: {
         node: pluginNode,
       },
