@@ -31,10 +31,12 @@ export async function pnpmPreset(
 
   const [
     pluginPnpm,
+    pluginYaml,
     yamlParser,
     jsoncParser,
   ] = await Promise.all([
     interopDefault(import('eslint-plugin-pnpm')),
+    interopDefault(import('eslint-plugin-yml')),
     interopDefault(import('yaml-eslint-parser')),
     interopDefault(import('jsonc-eslint-parser')),
   ])
@@ -101,6 +103,9 @@ export async function pnpmPreset(
     {
       files: ['pnpm-workspace.yaml'],
       name: 'schplitt/eslint-config:pnpm/pnpm-workspace-yaml-sort',
+      plugins: {
+        yml: pluginYaml as any,
+      },
       rules: {
         'yml/sort-keys': [
           'error',
