@@ -1,5 +1,5 @@
 import type { Linter } from 'eslint'
-import type { AngularOptions, PnpmOptions, StylisticConfig, TypeAwareOptions, VueOptions } from './configs'
+import type { AngularOptions, PnpmOptions, StylisticConfig, TypeAwareOptions, VueOptions, YamlOptions } from './configs'
 
 export type Awaitable<T> = T | Promise<T>
 
@@ -10,6 +10,7 @@ export interface Options {
   tsconfig?: boolean
   jsonc?: boolean
   markdown?: boolean
+  yaml?: boolean | YamlOptions
   angular?: boolean | AngularOptions
   vue?: boolean | VueOptions
   ignores?: UserIgnores

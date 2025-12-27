@@ -73,6 +73,7 @@
     "eslint-plugin-pnpm": "^1.4.2",
     "eslint-plugin-unused-imports": "^4.3.0",
     "eslint-plugin-vue": "^10.6.2",
+    "eslint-plugin-yml": "^1.19.1",
     "eslint-processor-vue-blocks": "^2.0.0",
     "find-up-simple": "^1.0.1",
     "globals": "^16.5.0",

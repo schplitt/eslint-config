@@ -45,6 +45,11 @@ export const TSX_GLOB = '**/*.?([cm])tsx'
 export const COMPLETE_JS_TS_GLOB = '**/*.?([cm])[jt]s?([x])'
 
 /**
+ * Glob patterns for YAML files
+ */
+export const YAML_GLOB = '**/*.y?(a)ml'
+
+/**
  * Glob patterns for Markdown files
  */
 export const MARKDOWN_GLOB = '**/*.md'
