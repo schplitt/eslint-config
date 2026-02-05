@@ -43,12 +43,12 @@ function runWithConfig(name: string, config: Options, ...overrides: { rules?: Re
     await fs.writeFile(
       join(target, 'eslint.config.mjs'),
       `
-// @eslint-disable
+/* eslint-disable */
 import schplitt from '${relativeDist}'
 
 export default schplitt(
   ${JSON.stringify(config)},
-  ...${JSON.stringify(overrides) ?? []},
+  ...${JSON.stringify(overrides ?? [])},
 )
 `,
     )
