@@ -37,6 +37,7 @@ export const IGNORE_GLOBS = [
 
   // ignore github skills by default
   '**/.github/skills/**',
+  '**/.agents/skills/**',
 ] as const
 
 /**
