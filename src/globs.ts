@@ -35,7 +35,7 @@ export const IGNORE_GLOBS = [
   '**/auto-import?(s).d.ts',
   '**/components.d.ts',
 
-  // ignore github skills by default
+  // ignore skills folders by default
   '**/.github/skills/**',
   '**/.agents/skills/**',
 ] as const
