@@ -1,0 +1,42 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+  
+  <!-- Using deprecated structural directives -->
+  <div *ngIf="showContent">
+    <p>Old ngIf syntax</p>
+  </div>
+  
+  <!-- Using deprecated ngFor -->
+  <ul>
+    <li *ngFor="let item of items">{{ item.name }}</li>
+  </ul>
+  
+  <!-- Banana in box error -->
+  <input ([ngModel])="value" />
+  
+  <!-- Triple equals check -->
+  <div *ngIf="status == 'active'">Active</div>
+  
+  <!-- Call expression in template -->
+  <p>{{ getFormattedDate() }}</p>
+  
+  <!-- Good: Control flow syntax -->
+  @if (showNewContent) {
+    <p>New control flow syntax</p>
+  } @else {
+    <p>Fallback content</p>
+  }
+  
+  <!-- Good: New @for syntax -->
+  @for (item of newItems; track item.id) {
+    <div>{{ item.name }}</div>
+  } @empty {
+    <p>No items</p>
+  }
+  
+  <!-- Duplicate attributes -->
+  <button class="btn" class="btn-primary" (click)="onClick()">Click me</button>
+  
+  <!-- Image without ngSrc (should suggest ngSrc) -->
+  <img src="/assets/image.png" alt="Example image" />
+</div>

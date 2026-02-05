@@ -1,0 +1,55 @@
+{
+  "name": "@example/package",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An example package for testing package.json sorting",
+  "keywords": [
+    "example",
+    "test",
+    "sorting"
+  ],
+  "license": "MIT",
+  "author": "Test Author",
+  "homepage": "https://github.com/example/package#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/example/package"
+  },
+  "bugs": {
+    "url": "https://github.com/example/package/issues"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "axios": "^1.0.0",
+    "zod": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

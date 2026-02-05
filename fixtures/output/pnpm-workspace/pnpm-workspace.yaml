@@ -1,0 +1,22 @@
+packages:
+  - 'packages/*'
+  - 'apps/*'
+
+catalog:
+  zod: ^3.23.0
+  typescript: ^5.6.0
+  vitest: ^2.1.0
+  eslint: ^9.10.0
+
+catalogs:
+  default:
+    lodash: ^4.17.21
+    axios: ^1.0.0
+  conflicts_zod_h3_0_0:
+    zod: ^3.0.0
+  conflicts_vitest_h1_0_0:
+    vitest: ^1.0.0
+  conflicts_typescript_h5_0_0:
+    typescript: ^5.0.0
+  conflicts_eslint_h9_0_0:
+    eslint: ^9.0.0
