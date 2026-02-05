@@ -41,7 +41,6 @@ export const IGNORE_GLOBS = [
   '**/.agent/skills/**',
   '**/.augment/rules/**',
   '**/.claude/skills/**',
-  'skills/**',
   '**/.cline/skills/**',
   '**/.codebuddy/skills/**',
   '**/.commandcode/skills/**',
