@@ -110,6 +110,7 @@ export default schplitt(
 // ═══════════════════════════════════════════════════════════════════════════
 
 // Default TypeScript configuration (Node.js focused)
+// Tests: JavaScript rules, TypeScript rules, Node.js rules, imports, unused-imports
 runWithConfig('typescript-default', {
   // Use default options for TypeScript + Node
   pnpm: false,
@@ -152,4 +153,11 @@ runWithConfig('markdown', {
 // PNPM workspace configuration
 runWithConfig('pnpm-workspace', {
   pnpm: true,
+})
+
+// TypeScript with type-aware rules enabled
+// Tests: @typescript-eslint type-aware rules (await-thenable, no-floating-promises, etc.)
+runWithConfig('typeaware', {
+  typeAware: true,
+  pnpm: false,
 })
