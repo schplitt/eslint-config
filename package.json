@@ -1,6 +1,6 @@
 {
   "name": "@schplitt/eslint-config",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "type": "module",
   "packageManager": "pnpm@10.28.0",
   "description": "Opinionated ESLint config for TypeScript, Vue, Angular, and more",
