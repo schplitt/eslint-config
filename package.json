@@ -47,8 +47,8 @@
     "build": "tsdown",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "test": "pnpm build && vitest run",
+    "test:watch": "pnpm build && vitest",
     "typecheck": "tsc --noEmit",
     "prerelease": "eslint && tsc --noEmit && pnpm build",
     "release": "bumpp"

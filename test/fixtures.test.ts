@@ -1,15 +1,10 @@
 import type { Options } from '../src/types'
 
 import fs from 'node:fs/promises'
-import { dirname, join, relative, resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import { execa } from 'execa'
 import { glob } from 'tinyglobby'
 import { afterAll, beforeAll, it } from 'vitest'
-
-const timeout = 120_000
-
-// Get the absolute path to the dist directory
-const distPath = resolve(import.meta.dirname, '..', 'dist', 'index.mjs')
 
 beforeAll(async () => {
   await fs.rm('_fixtures', { recursive: true, force: true })
@@ -20,7 +15,15 @@ afterAll(async () => {
 })
 
 /**
- * Run ESLint with a specific configuration and compare output
+ * Run ESLint with a specific configuration and compare output.
+ * Follows the antfu/eslint-config testing pattern:
+ * 1. Copy input fixtures to a temp directory
+ * 2. Generate an ESLint config importing from source
+ * 3. Run eslint --fix
+ * 4. Compare each file against a file snapshot
+ * @param name
+ * @param config
+ * @param {...any} overrides
  */
 function runWithConfig(name: string, config: Options, ...overrides: { rules?: Record<string, unknown> }[]) {
   it.concurrent(name, async ({ expect }) => {
@@ -36,15 +39,12 @@ function runWithConfig(name: string, config: Options, ...overrides: { rules?: Re
       },
     })
 
-    // Calculate relative path from target to dist
-    const relativeDist = relative(target, distPath).replace(/\\/g, '/')
-
-    // Generate ESLint config file with relative import
+    // Generate ESLint config file that imports from package
     await fs.writeFile(
-      join(target, 'eslint.config.mjs'),
+      join(target, 'eslint.config.js'),
       `
-/* eslint-disable */
-import schplitt from '${relativeDist}'
+// @eslint-disable
+import schplitt from '@schplitt/eslint-config'
 
 export default schplitt(
   ${JSON.stringify(config)},
@@ -59,8 +59,7 @@ export default schplitt(
         cwd: target,
         stdio: 'pipe',
       })
-    }
-    catch {
+    } catch {
       // ESLint exits with code 1 when there are unfixable errors, which is expected
     }
 
@@ -68,41 +67,22 @@ export default schplitt(
     const files = await glob('**/*', {
       ignore: [
         'node_modules',
-        'eslint.config.mjs',
+        'eslint.config.js',
       ],
       cwd: target,
     })
 
-    // Compare each file with expected output
+    // Compare each file with expected output using file snapshots
     await Promise.all(files.map(async (file) => {
       const content = await fs.readFile(join(target, file), 'utf-8')
       const source = await fs.readFile(join(from, file), 'utf-8')
-      const outputPath = join(output, file)
-
-      // If no changes, remove the output file (if it exists)
       if (content === source) {
-        await fs.rm(outputPath, { force: true })
+        await fs.rm(join(output, file), { force: true })
         return
       }
-
-      // Ensure output directory exists
-      await fs.mkdir(dirname(outputPath), { recursive: true })
-
-      // Check if expected output exists
-      let expected: string | undefined
-      try {
-        expected = await fs.readFile(outputPath, 'utf-8')
-      }
-      catch {
-        // File doesn't exist - create it and fail the test to alert about new snapshot
-        await fs.writeFile(outputPath, content)
-        throw new Error(`New snapshot created for ${file}. Run tests again to verify.`)
-      }
-
-      // Compare with expected
-      expect(content).toBe(expected)
+      await expect.soft(content).toMatchFileSnapshot(join(output, file))
     }))
-  }, timeout)
+  })
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
