@@ -52,7 +52,7 @@
     "release": "bumpp"
   },
   "dependencies": {
-    "@eslint-community/eslint-plugin-eslint-comments": "^4.6.0",
+    "@eslint-community/eslint-plugin-eslint-comments": "^4.7.1",
     "@eslint/markdown": "^7.5.1",
     "@stylistic/eslint-plugin": "^5.9.0",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
@@ -68,7 +68,7 @@
     "eslint-plugin-import-lite": "^0.5.2",
     "eslint-plugin-jsdoc": "^62.7.1",
     "eslint-plugin-jsonc": "^3.1.1",
-    "eslint-plugin-markdown-preferences": "^0.40.2",
+    "eslint-plugin-markdown-preferences": "^0.40.3",
     "eslint-plugin-n": "^17.24.0",
     "eslint-plugin-pnpm": "^1.6.0",
     "eslint-plugin-unused-imports": "^4.4.1",
@@ -76,7 +76,7 @@
     "eslint-plugin-yml": "^3.3.0",
     "eslint-processor-vue-blocks": "^2.0.0",
     "find-up-simple": "^1.0.1",
-    "globals": "^17.3.0",
+    "globals": "^17.4.0",
     "jsonc-eslint-parser": "^3.1.0",
     "nypm": "^0.6.5",
     "vue-eslint-parser": "^10.4.0",
