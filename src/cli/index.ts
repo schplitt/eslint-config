@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { defineCommand, runMain } from 'citty'
-import pkgJson from '../../package.json' assert { type: 'json' }
+import pkgJson from '../../package.json' with { type: 'json' }
 import process from 'process'
 import {
   addDevDependency,

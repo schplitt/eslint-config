@@ -1,5 +1,4 @@
 import type { Config } from '../types'
-// @ts-expect-error - no types available
 import pluginEslintComments from '@eslint-community/eslint-plugin-eslint-comments'
 
 /**
