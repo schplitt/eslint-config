@@ -60,7 +60,7 @@
     "angular-eslint": "^21.3.1",
     "citty": "^0.2.2",
     "consola": "^3.4.2",
-    "eslint": "^10.2.0",
+    "eslint": "^10.0.2",
     "eslint-flat-config-utils": "^3.1.0",
     "eslint-merge-processors": "^2.0.0",
     "eslint-plugin-antfu": "^3.2.2",
