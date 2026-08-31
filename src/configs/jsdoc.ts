@@ -49,7 +49,7 @@ export async function jsdocPreset(options: JSDOCOptions = {}): Promise<Config[]>
         'jsdoc/no-blank-blocks': 'warn',
         'jsdoc/require-param': 'warn',
         'jsdoc/require-param-name': 'warn',
-        'jsdoc/require-param-description': 'warn',
+        'jsdoc/require-param-description': 'off',
         'jsdoc/require-property': 'warn',
         'jsdoc/require-property-description': 'warn',
         'jsdoc/require-property-name': 'warn',
