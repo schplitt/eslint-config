@@ -22,7 +22,7 @@ export function schplitt(options: Options = {}): FlatConfigComposer<Config> {
     ignores = [],
     stylistic = true,
     typeAware = false,
-    pnpm = findUpSync('pnpm-lock.yaml') !== undefined,
+    pnpm = findUpSync('pnpm-workspace.yaml') !== undefined,
   } = options
 
   const isInEditor = isInEditorEnv()

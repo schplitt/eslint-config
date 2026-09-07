@@ -3,11 +3,7 @@ import fs from 'node:fs/promises'
 import { findUp } from 'find-up-simple'
 import { interopDefault } from '../utils'
 
-async function detectCatalogUsage(): Promise<boolean> {
-  const workspaceFile = await findUp('pnpm-workspace.yaml')
-  if (!workspaceFile)
-    return false
-
+async function detectCatalogUsage(workspaceFile: string): Promise<boolean> {
   const yaml = await fs.readFile(workspaceFile, 'utf-8')
   return yaml.includes('catalog:') || yaml.includes('catalogs:')
 }
@@ -24,8 +20,14 @@ export interface PnpmOptions {
 export async function pnpmPreset(
   options: PnpmOptions & CommonOptions = {},
 ): Promise<Config[]> {
+  // Every pnpm rule reads pnpm-workspace.yaml and throws when it is missing,
+  // so there is nothing to enforce in a repo without one.
+  const workspaceFile = await findUp('pnpm-workspace.yaml')
+  if (!workspaceFile)
+    return []
+
   const {
-    catalogs = await detectCatalogUsage(),
+    catalogs = await detectCatalogUsage(workspaceFile),
     isInEditor = false,
   } = options
 
